@@ -4,16 +4,7 @@ import {useForm} from "react-hook-form";
 const Login = () => {
 
     // const onSubmit = data => console.log(data);
-    const onSubmit = async (data) => fetch("http://91.122.34.11:3000/api/auth/login", {
-        method: "post",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: `${data}`
-    })
-        .then((response) => {
-            localStorage.setItem('accessToken', response);
-        });
+    const onSubmit = async (data) => {};
     const {register, handleSubmit} = useForm();
     return (
         <Box

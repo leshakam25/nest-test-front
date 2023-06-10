@@ -4,16 +4,21 @@ import {useForm} from "react-hook-form";
 
 const Register = () => {
     const {register, handleSubmit} = useForm();
-    const onSubmit = async (data) => fetch("http://91.122.34.11:3000/api/auth/register", {
-        method: "post",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: `${data}`
-    })
+    const onSubmit = async (data) =>
+        fetch("http://91.122.34.11:3000/api/auth/register",
+        {
+            method: "post",
+            mode:"no-cors",
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
         .then((response) => {
-            localStorage.setItem('accessToken', response);
+            console.log(JSON.stringify(data));
         });
+
+
     return (
         <Box
             sx={{
@@ -22,22 +27,22 @@ const Register = () => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 gap: 1,
-                height:'100vh'
+                height: '100vh'
             }}
         >
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Typography>Введите данные для регистрации</Typography>
                 <TextField
                     {...register('login', {required: true})}
-                    fullWidth={true}
+                    fullWidth
                     placeholder='Логин'/>
                 <TextField
                     {...register('password', {required: true})}
-                    fullWidth={true}
+                    fullWidth
                     placeholder='Пароль'/>
                 <Button
                     type='submit'
-                    fullWidth={true}
+                    fullWidth
                     variant={'contained'}
                 >
                     Войти
