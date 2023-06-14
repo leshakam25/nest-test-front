@@ -1,22 +1,25 @@
 import React from 'react';
 import {Box, Button, TextField, Typography} from "@mui/material";
 import {useForm} from "react-hook-form";
+import axios from "axios";
 
 const Register = () => {
     const {register, handleSubmit} = useForm();
-    const onSubmit = async (data) =>
-        fetch("http://91.122.34.11:3000/api/auth/register",
-        {
-            method: "post",
-            mode:"no-cors",
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then((response) => {
-            console.log(JSON.stringify(data));
-        });
+    const onSubmit = async (data) => {
+        axios
+            .post('http://45.146.166.147:3000/api/auth/register',
+                {
+                    login: data.login,
+                    password: data.password
+                }
+            )
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 
 
     return (

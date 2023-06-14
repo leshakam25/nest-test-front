@@ -1,10 +1,25 @@
 import {Box, Button, TextField, Typography} from "@mui/material";
 import {useForm} from "react-hook-form";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const Login = () => {
-
-    // const onSubmit = data => console.log(data);
-    const onSubmit = async (data) => {};
+    const navigate = useNavigate();
+    const onSubmit = async (data) => {
+        axios
+            .post('http://45.146.166.147:3000/api/auth/login',
+                {
+                    login: data.login,
+                    password: data.password
+                }
+            )
+            .then(function (response) {
+                localStorage.setItem("access_token", response.data.access_token);
+            })
+            .catch(function (error) {
+                alert(error.response.data.message);
+            });
+    }
     const {register, handleSubmit} = useForm();
     return (
         <Box
@@ -14,7 +29,7 @@ const Login = () => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 gap: 1,
-                height:'100vh'
+                height: '100vh'
             }}
         >
             <form onSubmit={handleSubmit(onSubmit)}>
