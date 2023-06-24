@@ -1,26 +1,18 @@
 import {Box, Button, TextField, Typography} from "@mui/material";
-import {useForm} from "react-hook-form";
-import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {useState} from "react";
+import {authorize} from "../store/authSlice";
 
 const Login = () => {
-    const navigate = useNavigate();
-    const onSubmit = async (data) => {
-        axios
-            .post('http://45.146.166.147:3000/api/auth/login',
-                {
-                    login: data.login,
-                    password: data.password
-                }
-            )
-            .then(function (response) {
-                localStorage.setItem("access_token", response.data.access_token);
-            })
-            .catch(function (error) {
-                alert(error.response.data.message);
-            });
+    const dispatch = useDispatch();
+    const [login, setLogin] = useState("");
+    const [password, setPassword] = useState("");
+    const log = () => {
+        dispatch(authorize({login, password}));
+        setLogin("");
+        setPassword("");
     }
-    const {register, handleSubmit} = useForm();
+
     return (
         <Box
             sx={{
@@ -29,27 +21,33 @@ const Login = () => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 gap: 1,
-                height: '100vh'
+                height: '100vh',
+                maxWidth: 600,
+                m: '0 auto'
             }}
         >
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <Typography>Введите данные для авторизации</Typography>
-                <TextField
-                    {...register('login', {required: true})}
-                    fullWidth={true}
-                    placeholder='Логин'/>
-                <TextField
-                    {...register('password', {required: true})}
-                    fullWidth={true}
-                    placeholder='Пароль'/>
-                <Button
-                    type='submit'
-                    fullWidth={true}
-                    variant={'contained'}
-                >
-                    Войти
-                </Button>
-            </form>
+            <Typography color={'green'}>Введите данные для авторизации</Typography>
+            <TextField
+                value={login}
+                onChange={(e) => {
+                    setLogin(e.target.value);
+                }}
+                fullWidth={true}
+                placeholder='Логин'/>
+            <TextField
+                value={password}
+                onChange={(e) => {
+                    setPassword(e.target.value);
+                }}
+                fullWidth={true}
+                placeholder='Пароль'/>
+            <Button
+                onClick={log}
+                fullWidth={true}
+                variant={'contained'}
+            >
+                Войти
+            </Button>
         </Box>
     );
 };
