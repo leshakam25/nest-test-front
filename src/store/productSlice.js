@@ -1,10 +1,11 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
+import products from "../product/products.jsx";
 
 let url = import.meta.env.VITE_REACT_APP_BASEURL;
 
 const productSlice = createSlice({
-    name: 'product',
+    name: 'products',
     initialState: {
         state: [],
         status: null,
@@ -36,9 +37,25 @@ const productSlice = createSlice({
                 .catch(function (error) {
                     alert(error.response.data.message);
                 });
+        },
+        findProduct(state, action) {
+            axios
+                .post(`${url}/product/find`,
+                    {
+                        category: action.payload.data.category,
+                        limit: Number(action.payload.data.limit)
+                    },
+                )
+                .then(function (response) {
+                    console.log("response", response);
+                    state.product='hui'
+                })
+                .catch(function (error) {
+                    alert(error.response.data.message);
+                });
         }
     }
 })
 
-export const {createProduct} = productSlice.actions;
+export const {createProduct, findProduct} = productSlice.actions;
 export default productSlice.reducer;
