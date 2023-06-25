@@ -1,14 +1,11 @@
 import React from 'react';
 import {Box, Button, Typography} from "@mui/material";
+import Title from "../shared/components/title.jsx";
 
 const ProductsList = () => {
     return (
-        <Box sx={{
-            width: '100%',
-        }}>
-            <Typography variant={'h4'}>
-                Список товаров
-            </Typography>
+        <Box>
+            <Title label={'Список товаров'}/>
             <Button
                 fullwidth
                 variant={'contained'} >

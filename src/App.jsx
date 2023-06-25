@@ -6,18 +6,14 @@ import Auth from "./auth/auth.jsx";
 import Register from "./auth/register.jsx";
 import Products from "./product/products.jsx";
 import Header from "./header/header.jsx";
+import CreateProduct from "./product/createProduct.jsx";
+import ProductsList from "./product/productsList.jsx";
 
 function App() {
     return (
         <>
             <Header/>
-            <Routes>
-                <Route path="/" element={<Wrapper/>}/>
-                <Route path="/auth" element={<Auth/>}/>
-                <Route path="/login" element={<Login/>}/>
-                <Route path="/register" element={<Register/>}/>
-                <Route path="/products" element={<Products/>}/>
-            </Routes>
+            <Wrapper/>
         </>
     )
 }

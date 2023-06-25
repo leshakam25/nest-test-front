@@ -21,8 +21,8 @@ const Register = () => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 gap: 1,
-                height: '100vh',
-                maxWidth:600,
+                height: '100%',
+                width:'100%',
                 margin: "0 auto"
             }}
         >

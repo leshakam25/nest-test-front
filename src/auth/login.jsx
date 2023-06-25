@@ -2,6 +2,7 @@ import {Box, Button, TextField, Typography} from "@mui/material";
 import {useDispatch} from "react-redux";
 import {useState} from "react";
 import {authorize} from "../store/authSlice";
+import {useNavigate} from "react-router-dom";
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -12,42 +13,43 @@ const Login = () => {
         setLogin("");
         setPassword("");
     }
+    const navigate = useNavigate();
 
     return (
         <Box
             sx={{
                 display: 'flex',
-                flexDirection: 'column',
+                flexDirection: 'row',
                 justifyContent: 'center',
                 alignItems: 'center',
                 gap: 1,
-                height: '100vh',
-                maxWidth: 600,
-                m: '0 auto'
             }}
         >
-            <Typography color={'green'}>Введите данные для авторизации</Typography>
             <TextField
                 value={login}
+                variant={'standard'}
+                size={'small'}
                 onChange={(e) => {
                     setLogin(e.target.value);
                 }}
-                fullWidth={true}
                 placeholder='Логин'/>
             <TextField
                 value={password}
+                variant={'standard'}
+                size={'small'}
                 onChange={(e) => {
                     setPassword(e.target.value);
                 }}
-                fullWidth={true}
                 placeholder='Пароль'/>
             <Button
                 onClick={log}
-                fullWidth={true}
+                color={'success'}
+                size={'small'}
                 variant={'contained'}
             >
                 Войти
             </Button>
+
         </Box>
     );
 };

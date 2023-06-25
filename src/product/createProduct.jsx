@@ -3,6 +3,8 @@ import {Box, Button, TextField, Typography} from "@mui/material";
 import {useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
 import {createProduct} from "../store/productSlice.js";
+import {Label} from "@mui/icons-material";
+import Title from "../shared/components/title.jsx";
 
 const CreateProduct = () => {
     const dispatch = useDispatch();
@@ -16,100 +18,96 @@ const CreateProduct = () => {
     }
 
     return (
-
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <Box>
-                <Typography variant={'h4'}>
-                    Создание товара
-                </Typography>
+        <Box>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <Title label={'Создание товара'}/>
                 <Box sx={{
                     display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'space-around'
+                    flexDirection: 'column',
+                    justifyContent: 'space-around',
+                    gap: 1,
+                    maxWidth:'600px'
                 }}>
-                    <Box sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: 1,
-                        width: '100%'
-                    }}>
-                        <TextField
-                            {...register('title')}
-                            fullWidth
-                            placeholder='Название'
-                        />
-                        <TextField
-                            {...register('image')}
-                            fullWidth
-                            placeholder='Изображение'
-                        />
-                        <TextField
-                            {...register('categories')}
-                            fullWidth
-                            placeholder='Категории'
-                        />
-                        <TextField
-                            {...register('price')}
-                            fullWidth
-                            placeholder='Цена'
-                        />
-                        <TextField
-                            {...register('oldPrice')}
-                            fullWidth
-                            placeholder='Старая цена'
-                        />
-                    </Box>
-                    <Box sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: 1,
-                        width: '100%'
-                    }}>
-                        <TextField
-                            {...register('description')}
-                            fullWidth
-                            placeholder='Описание'
-                        />
-                        <TextField
-                            {...register('advantages')}
-                            fullWidth
-                            placeholder='Преимущества'
-                        />
-                        <TextField
-                            {...register('disAdvantages')}
-                            fullWidth
-                            placeholder='Недостатки'
-                        />
-                        <TextField
-                            {...register('categories')}
-                            fullWidth
-                            placeholder='Категории'
-                        />
-
-                        <TextField
-                            {...register('tags')}
-                            fullWidth
-                            placeholder='Тэги'
-                        />
-                        {/*<TextField*/}
-                        {/*    {...register('characteristics')}*/}
-                        {/*    fullWidth={true}*/}
-                        {/*    placeholder='Характеристики'*/}
-                        {/*/>*/}
-                    </Box>
+                    <TextField
+                        variant={'filled'}
+                        {...register('title')}
+                        placeholder='Название'
+                        size={'small'}
+                    />
+                    <TextField
+                        variant={'filled'}
+                        {...register('categories')}
+                        placeholder='Категории'
+                        size={'small'}
+                    />
+                    <TextField
+                        variant={'filled'}
+                        {...register('price')}
+                        placeholder='Цена'
+                        size={'small'}
+                    />
+                    <TextField
+                        variant={'filled'}
+                        {...register('oldPrice')}
+                        placeholder='Старая цена'
+                        size={'small'}
+                    />
+                    <TextField
+                        variant={'filled'}
+                        {...register('tags')}
+                        placeholder='Тэги'
+                        size={'small'}
+                        multiline
+                        rows={2}
+                    />
+                    <TextField
+                        variant={'filled'}
+                        {...register('image')}
+                        placeholder='Изображения'
+                        size={'small'}
+                    />
+                    <TextField
+                        variant={'filled'}
+                        {...register('advantages')}
+                        placeholder='Преимущества'
+                        multiline
+                        rows={2}
+                        size={'small'}
+                    />
+                    <TextField
+                        variant={'filled'}
+                        {...register('disAdvantages')}
+                        placeholder='Недостатки'
+                        multiline
+                        rows={2}
+                        size={'small'}
+                    />
+                    <TextField
+                        variant={'filled'}
+                        {...register('description')}
+                        placeholder='Описание'
+                        multiline
+                        rows={4}
+                        size={'small'}
+                    />
+                    {/*<TextField*/}
+                    {/*    {...register('characteristics')}*/}
+                    {/*    fullWidth={true}*/}
+                    {/*    placeholder='Характеристики'*/}
+                    {/*/>*/}
+                    <Button
+                        type={'submit'}
+                        color={'success'}
+                        variant={'contained'}
+                        fullWidth
+                        sx={{my: 1}}
+                    >
+                        Создать
+                    </Button>
                 </Box>
-                <Button
-                    type={'submit'}
-                    variant={'contained'}
-                    fullWidth
-                    sx={{my: 1}}
-                >
-                    Создать
-                </Button>
-            </Box>
-        </form>
+            </form>
+        </Box>
     )
-        ;
 };
 
 export default CreateProduct;
