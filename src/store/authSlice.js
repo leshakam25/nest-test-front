@@ -1,6 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 
+let url = import.meta.env.VITE_REACT_APP_BASEURL;
+
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
@@ -10,7 +12,7 @@ const authSlice = createSlice({
     reducers: {
         authorize(state, action) {
             axios
-                .post('http://45.146.166.147:3000/api/auth/login',
+                .post(`${url}/auth/login`,
                     {
                         login: action.payload.login,
                         password: action.payload.password
@@ -26,7 +28,7 @@ const authSlice = createSlice({
         },
         register(state, action) {
             axios
-                .post('http://45.146.166.147:3000/api/auth/register',
+                .post(`${url}/auth/register`,
                     {
                         login: action.payload.login,
                         password: action.payload.password

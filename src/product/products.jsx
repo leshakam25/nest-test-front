@@ -1,14 +1,9 @@
 import React from 'react';
-import {Accordion, AccordionDetails, AccordionSummary, Box, Container, Typography} from "@mui/material";
-import {useForm} from "react-hook-form";
-import {ExpandMore} from "@mui/icons-material";
+import { Box, Container} from "@mui/material";
 import CreateProduct from "./createProduct.jsx";
 import ProductsList from "./productsList.jsx";
 
 const Products = () => {
-    const {register, handleSubmit} = useForm();
-    const onSubmit = async (data) => {
-    }
     return (
         <Container sx={{
             display: "flex",

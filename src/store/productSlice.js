@@ -1,6 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 
+let url = import.meta.env.VITE_REACT_APP_BASEURL;
+
 const productSlice = createSlice({
     name: 'product',
     initialState: {
@@ -11,7 +13,7 @@ const productSlice = createSlice({
     reducers: {
         createProduct(state, action) {
             axios
-                .post('http://45.146.166.147:3000/api/product/create',
+                .post(`${url}/product/create`,
                     {
                         image: action.payload.data.image,
                         title: action.payload.data.title,

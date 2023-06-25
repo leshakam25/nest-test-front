@@ -1,9 +1,8 @@
 import React from 'react';
-import {useNavigate} from "react-router-dom";
-import {Button, Container} from "@mui/material";
+import { Container} from "@mui/material";
+import Products from "../product/products.jsx";
 
 const Wrapper = () => {
-    let navigate = useNavigate();
 
     return (
         <Container sx={{
@@ -14,8 +13,7 @@ const Wrapper = () => {
             height: "100vh",
             gap: 1
         }}>
-            <Button variant={'contained'} onClick={() => navigate('/auth')}>Авторизация</Button>
-            <Button variant={'contained'} onClick={() => navigate('/products')}>Товары</Button>
+          <Products/>
         </Container>
     );
 };

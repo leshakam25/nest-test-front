@@ -1,6 +1,7 @@
 import React from 'react';
 import {Box, Button} from "@mui/material";
 import {useNavigate} from "react-router-dom";
+import Auth from "../auth/auth.jsx";
 
 const Header = () => {
     const navigate = useNavigate();
@@ -16,9 +17,7 @@ const Header = () => {
                 gap: 2
             }}
         >
-            <Button variant={'outlined'} onClick={() => navigate('/login')}>Вход</Button>
-            <Button variant={'outlined'} onClick={() => navigate('/register')}>Регистрация</Button>
-            <Button variant={'outlined'} onClick={() => navigate('/products')}>Товары</Button>
+            <Auth/>
         </Box>
     );
 };
