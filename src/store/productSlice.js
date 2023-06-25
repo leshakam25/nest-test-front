@@ -1,11 +1,10 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-import products from "../product/products.jsx";
 
 let url = import.meta.env.VITE_REACT_APP_BASEURL;
 
 const productSlice = createSlice({
-    name: 'products',
+    name: 'product',
     initialState: {
         state: [],
         status: null,
@@ -48,7 +47,7 @@ const productSlice = createSlice({
                 )
                 .then(function (response) {
                     console.log("response", response);
-                    state.product='hui'
+                    return response;
                 })
                 .catch(function (error) {
                     alert(error.response.data.message);
